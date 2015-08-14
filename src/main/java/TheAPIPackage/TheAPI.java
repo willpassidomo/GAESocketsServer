@@ -6,9 +6,6 @@
 package TheAPIPackage;
 
 
-import com.google.api.server.spi.config.Api;
-import com.google.api.server.spi.config.ApiNamespace;
-import com.google.api.server.spi.config.Named;
 
 import Delivery.MessageHandler;
 import Delivery.TestMessage;
@@ -21,6 +18,7 @@ import Persistence.Storage;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
+import com.google.appengine.api.ThreadManager;
 import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -89,7 +87,7 @@ public class TheAPI {
     
     public StringWrapper testSocket(HttpServletRequest req, @Named("portnumber")Integer portNumber){
         String ipAddress = req.getRemoteAddr();
-        new Thread(new TestMessage(ipAddress, portNumber)).start();
+        ThreadManager.createBackgroundThread(new TestMessage(ipAddress, portNumber)).start();
         return new StringWrapper("Message Recieved");
     }
     
