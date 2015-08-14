@@ -87,7 +87,7 @@ public class TheAPI {
     
     public StringWrapper testSocket(HttpServletRequest req, @Named("portnumber")Integer portNumber){
         String ipAddress = req.getRemoteAddr();
-        ThreadManager.createBackgroundThread(new TestMessage(ipAddress, portNumber)).start();
+        ThreadManager.createThreadForCurrentRequest(new TestMessage(ipAddress, portNumber)).start();
         return new StringWrapper("Message Recieved");
     }
     
