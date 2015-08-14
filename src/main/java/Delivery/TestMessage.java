@@ -32,17 +32,18 @@ public class TestMessage implements Runnable {
     @Override
     public void run() {
         try {
-            sleep(5000);
+            //sleep(5000);
             Socket socket = new Socket(address, portNumber);
             OutputStreamWriter outputString = new OutputStreamWriter(socket.getOutputStream());
             BufferedWriter bufferedWriter = new BufferedWriter(outputString);
             PrintWriter out = new PrintWriter(bufferedWriter);
-            out.println("test message after 5 seconds");      
+            out.println("test message after 0 seconds");      
         } catch (IOException ex) {
             Logger.getLogger(TestMessage.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(TestMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        catch (InterruptedException ex) {
+//            Logger.getLogger(TestMessage.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
 }
